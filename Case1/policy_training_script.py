@@ -73,7 +73,7 @@ def run_command_fun(command):
 
 
 num_procs = (
-    8  # make smaller than the number of cores to take advantage of multiple threads
+    16  # make smaller than the number of cores to take advantage of multiple threads
 )
 pool = Pool(num_procs)
 pool.map(run_command_fun, run_comand_list)

@@ -192,7 +192,7 @@ if args.TRAIN:
 
 else:
     # Use trained policy for the simulation.
-    model = TRPO.load("trpo_" + identifer)
+    model = TRPO.load("policy-" + identifer)
     obs = env.reset()
 
     done = False

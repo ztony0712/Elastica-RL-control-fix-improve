@@ -25,8 +25,8 @@ task(){
 
 	## Select your preferred resolution
     # povray -H2160 -W3840 Quality=11 Antialias=on $filenameOnly
- 	povray -H1080 -W1920 Quality=11 Antialias=on $filenameOnly
-	# povray -H250 -W400 Quality=11 Antialias=on $filenameOnly Verbose=Off
+ 	# povray -H1080 -W1920 Quality=11 Antialias=on $filenameOnly
+	povray -D -H250 -W400 Quality=11 Antialias=on $filenameOnly Verbose=Off
 	# povray -H120 -W200 Quality=11 Antialias=on $filenameOnly Verbose=Off
 }
 

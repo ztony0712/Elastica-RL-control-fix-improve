@@ -98,7 +98,7 @@ def plot_video_with_sphere(
             sphere_position[2],
             sphere_position[0],
             sphere_position[1],
-            s=np.pi * (scaling_factor * inst_radius) ** 2,
+            s=np.pi * (scaling_factor * sphere_radius) ** 2,
         )
         # sphere_radius,
         # color=sphere_cmap(sphere_idx),)
