@@ -7,11 +7,11 @@ import time
 
 run_onpolicy = True
 run_offpolicy = True
-seed_list = [0, 1, 2, 3, 4]
-batchsize_list_offpolicy = [100000, 200000, 500000, 1000000, 2000000]
+seed_list = [0] # [0, 1, 2, 3, 4]
+batchsize_list_offpolicy = [1000000] # [100000, 200000, 500000, 1000000, 2000000]
 algo_list_offpolicy = ["DDPG", "SAC", "TD3"]
 
-batchsize_list_onpolicy = [1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
+batchsize_list_onpolicy = [8000] # [1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
 algo_list_onpolicy = ["PPO", "TRPO"]
 
 timesteps = 10.0e6
@@ -73,7 +73,7 @@ def run_command_fun(command):
 
 
 num_procs = (
-    16  # make smaller than the number of cores to take advantage of multiple threads
+    8  # make smaller than the number of cores to take advantage of multiple threads
 )
 pool = Pool(num_procs)
 pool.map(run_command_fun, run_comand_list)
