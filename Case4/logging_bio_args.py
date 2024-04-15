@@ -145,7 +145,7 @@ parser.add_argument(
 )
 ########### training and data info ###########
 parser.add_argument(
-    "--total_timesteps", type=float, default=2e6,
+    "--total_timesteps", type=float, default=1.0e6,
 )
 
 parser.add_argument(
@@ -161,7 +161,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--timesteps_per_batch", type=int, default=50000,
+    "--timesteps_per_batch", type=int, default=16000,
 )
 
 parser.add_argument(
@@ -177,7 +177,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--algo_name", type=str, default="TRPO",
+    "--algo_name", type=str, default="PPO",
 )
 
 parser.add_argument(
@@ -207,7 +207,7 @@ print(" ")
 
 # MODE
 args.MODE = 1
-args.TRAIN = True
+args.TRAIN = False
 
 
 if args.algo_name == "TRPO":
@@ -336,7 +336,7 @@ if args.TRAIN:
 
 else:
 
-    model = algo.load("policy-" + identifer)
+    model = algo.load("policy-PPO_nested_regular_id-1-2_75_30_1000000.0_16000_5_0")
     obs = env.reset()
     done = False
     score = 0

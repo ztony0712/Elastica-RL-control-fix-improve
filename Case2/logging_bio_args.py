@@ -61,7 +61,7 @@ parser = argparse.ArgumentParser()
 
 ########### training and data info ###########
 parser.add_argument(
-    "--total_timesteps", type=float, default=1e6,
+    "--total_timesteps", type=float, default=8e6,
 )
 
 parser.add_argument(
@@ -69,11 +69,11 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--timesteps_per_batch", type=int, default=8000,
+    "--timesteps_per_batch", type=int, default=2000000,
 )
 
 parser.add_argument(
-    "--algo_name", type=str, default="TRPO",
+    "--algo_name", type=str, default="SAC",
 )
 
 args = parser.parse_args()
@@ -126,7 +126,7 @@ max_rate_of_change_of_activation = np.infty
 print("rate of change", max_rate_of_change_of_activation)
 
 # If True, train. Otherwise run trained policy
-args.TRAIN = True
+args.TRAIN = False
 
 env = Environment(
     final_time=final_time,
@@ -194,7 +194,7 @@ if args.TRAIN:
 
 else:
     # Use trained policy for the simulation.
-    model = TRPO.load("policy-" + identifer)
+    model = algo.load("policy-SAC_3d-tracking_id-2000000_0.zip")
 
     for _ in range(9):
         obs = env.reset()

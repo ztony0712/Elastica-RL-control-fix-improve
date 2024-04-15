@@ -146,7 +146,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--COLLECT_DATA_FOR_POSTPROCESSING", type=bool, default=True,
+    "--COLLECT_DATA_FOR_POSTPROCESSING", type=bool, default=False,
 )
 
 parser.add_argument(
@@ -158,7 +158,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--timesteps_per_batch", type=int, default=2048 * 2,
+    "--timesteps_per_batch", type=int, default=16000,
 )
 
 parser.add_argument(
@@ -178,7 +178,7 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
-# args.total_timesteps = 1e4
+args.total_timesteps = 0.5e6
 args.final_time = 5.0
 
 # learning step skip
@@ -229,7 +229,7 @@ args.boundary = [-0.6, 0.6, 0.3, 0.9, -0.6, 0.6]
 
 # mode 1 corresponds to fixed target
 args.MODE = 1
-args.TRAIN = True
+args.TRAIN = False
 
 env = Environment(
     final_time=args.final_time,
@@ -314,7 +314,7 @@ if args.TRAIN:
 
 else:
 
-    model = TRPO.load("policy-" + identifer)
+    model = TRPO.load("policy-TRPO_Case3-refined_id-16000-0.98_0_tanh_64_64")
     video_name = identifer
 
     obs = env.reset()
@@ -328,4 +328,6 @@ else:
         if info["ctime"] > args.final_time:
             break
     print("Final Score:", score)
-    env.post_processing(filename_video="video-" + video_name + ".mp4",)
+    env.post_processing(
+        filename_video="video-" + identifer + ".mp4", SAVE_DATA=True,
+    )
