@@ -1,3 +1,90 @@
+# Soft Robot RL-Control based on Elastica Simulator
+This project is based on the github repository [GazzolaLab/Elastica-RL-control](GazzolaLab/Elastica-RL-control). We fixed bugs and chose the best hyperparameters for the RL algorithms. The results_video folder contains the videos of the our self-trained best controller of each case.
+
+The instruction of running the whole project is also provided. 
+
+> Author: [Tony](https://github.com/ztony0712)
+
+## Installation
+Clone this repo to your root directory:
+```bash
+# Clone and go to the directory
+cd
+git clone https://github.com/ztony0712/Elastica-RL-control-fix-improve
+cd Elastica-RL-control-fix-improve
+
+# Install and activate virtual environment
+conda create -f environment.yml
+conda activate elasticarl
+```
+
+## Usage
+
+### 0. **Note**
+
+You don't need to run policy training scripts. We have already selected the best parameter for each case. If you insist to run all of the training scripts, you can follow the instructions in the original repo. However, if you only want to get the best controller for each case, follow the instructions below.
+
+### 1. Set Parameters
+**If you want to replicate our parameter settings, skip this step. If you need parameters for specific analysis, check records in our powerpoints**
+
+We recommend you to set your own parameters in the `logging_bio_args.py` file. You can set the parameters before the environment setting line. For example, you can set the total number of timesteps, the timestep per batch, the algorithm name, and switch the TRAIN mode.
+
+```python
+# These are example parameters.
+args.total_timesteps = 1E6 # Total number of training timesteps
+args.timesteps_per_batch = 2048 # Timesteps per batch
+args.algo_name = 'PPO' # Choose the algorithm name from ['TRPO', 'PPO', 'SAC', 'DDPG', 'TD3']
+args.TRAIN = True # If you want to train the model, set it to True
+
+env = Environment( # Set the parameters before this line
+  ...
+  ...
+)
+```
+
+### 2. Run the Training Script
+```bash
+# For Case 1
+python Case1/logging_bio_args.py
+
+# For Case 2
+python Case2/logging_bio_args.py
+
+# Case 3, this is only for manually placed 2-control points
+python Case3/Case3_main-text/logging_bio_args_OnPolicy.py
+
+# Case 4
+python Case4/logging_bio_args.py
+```
+
+### 3. Run the Post-Processing Script
+Set the `args.TRAIN` to `False` in the `logging_bio_args.py` file. Then, run the step 2 again.
+
+```python
+args.TRAIN = False
+```
+
+Now, you should get a data folder, a 2D plot, and a 3D plot in the `CaseX` folder. If you want to render the video, you need to follow the next step.
+
+### 4. Visualization
+Copy the data folder under the corresponding Case folder of the `visualization` folder. Then, go to the rendering folder and run the scripts.
+
+```bash
+python generate_POVray_files.py
+./render_frames.sh # This takes a long time
+./make_vid.sh
+```
+
+The 'render_frames.sh' script can also be customized to adapt to your computer's performance. You can change the following line, but you should search the meaning of the parameters by yourself.
+
+```bash
+povray -D -H1080 -W1920 Quality=11 Antialias=on +WT6 $filenameOnly Verbose=off
+```
+
+Now, you should get a video in the `CaseX` folder.
+
+## The README below is the original one of the project
+
 ## Elastica + RL benchmark cases
 
 This repo provides supplementary code and benchmark data for the paper: [*Elastica: A compliant mechanics environment for soft robotic control*](https://ieeexplore.ieee.org/document/9369003), in IEEE Robotics and Automation Letters.
