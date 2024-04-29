@@ -1,5 +1,5 @@
 # Soft Robot RL-Control based on Elastica Simulator
-This project is based on the github repository [GazzolaLab/Elastica-RL-control](GazzolaLab/Elastica-RL-control). We fixed bugs and chose the best hyperparameters for the RL algorithms. The results_video folder contains the videos of the our self-trained best controller of each case.
+This project is my final project of NUS ME5423 Topics in Robotics, which is based on the github repository [GazzolaLab/Elastica-RL-control](GazzolaLab/Elastica-RL-control). We fixed bugs and chose the best hyperparameters for the RL algorithms. The results_video folder contains the videos of the our self-trained best controller of each case. I am from Neuro-robotics Project Group 18.
 
 The instruction of running the whole project is also provided. 
 
