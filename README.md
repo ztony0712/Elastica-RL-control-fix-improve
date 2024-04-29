@@ -4,6 +4,8 @@ This project is my final project of NUS ME5423 Topics in Robotics, which is base
 The instruction of running the whole project is also provided. 
 
 > Author: [Tony](https://github.com/ztony0712)
+<!-- > Video Presentation -->
+[![Soft Robot RL-Control based on Elastica Simulator](https://img.youtube.com/vi/3EWKWqdcM1s/0.jpg)](https://www.youtube.com/watch?v=3EWKWqdcM1s)
 
 ## Installation
 Clone this repo to your root directory:
